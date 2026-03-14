@@ -75,7 +75,7 @@ Controllers and simulations are designed/run for both
 
 ### LQG Control
 
-An \(H_2\) optimal controller (Linear Quadratic Gaussian) with the classic LQR-Kalman filter loop is implemented:
+An $$H_2$$ optimal controller (Linear Quadratic Gaussian) with the classic LQR-Kalman filter loop is implemented:
 
 Design parameters include
 
