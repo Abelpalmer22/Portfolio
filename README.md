@@ -1,17 +1,13 @@
 # Control Systems Portfolio  
 **Abel Palmer**
 
-This repository contains a collection of control systems and system identification projects focused on learning dynamical models from data and designing controllers for those models. The projects emphasize practical workflows used in control engineering: identifying models from input–output data, validating them through simulation, and designing controllers using classical and modern techniques.
-
-The goal of this portfolio is to demonstrate the full pipeline:
-
-data → model identification → validation → controller design → simulation and analysis
+This repository contains a collection of control systems and system identification projects focused on learning (mostly linear, or linearized) dynamical models from data and designing controllers for those models. I employ typical control engineering workflows, like identifying models from input–output data, validation through simulation and designing controllers using classical control with modern robustness additions.
 
 ---
 
 ## Topics Covered
 
-The projects in this repository involve techniques from system identification, classical control, and modern state-space control.
+The projects in this repository involve techniques from system identification, classical control, and modern state-space control. Specific details can be found in the READMEs for each project.
 
 ### System Identification
 
@@ -20,13 +16,13 @@ Methods for learning dynamical models from experimental data.
 - Subspace identification (CVA / N4SID style methods)
 - Block Hankel matrix construction
 - Singular value analysis for model order selection
-- Identification of discrete-time state-space models
+- Identification of DT state-space models
 - Validation of learned models on unseen datasets
 
-Typical workflow:
+Workflow used (subh as in the quadcopter project):
 
 1. Generate excitation signals (multisine / chirp)
-2. Collect input–output data
+2. Collect IO data
 3. Construct past–future Hankel matrices
 4. Compute SVD and examine singular values
 5. Estimate state-space models of different orders
@@ -59,7 +55,7 @@ These controllers are applied to models learned through system identification.
 
 ### Robustness and Frequency-Domain Analysis
 
-Several projects examine robustness properties of feedback systems.
+I examine robustness properties of feedback systems (e.g. in the shock absorber project):
 
 Topics include
 
