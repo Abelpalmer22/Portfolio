@@ -1,4 +1,4 @@
-# Control Systems Portfolio  
+# Defense/Control Systems Portfolio  
 **Abel Palmer**
 
 This repository contains a collection of control systems, guidance, tracking, navigation and system identification projects focused on building robust and tenacious tracking drone simulations, and learning (mostly linear, or linearized) dynamical models from data and designing controllers for those models. I employ typical control engineering workflows, like identifying models from input–output data, validation through simulation and designing controllers using classical control with modern robustness additions.
