@@ -1,134 +1,110 @@
-# Defense/Control Systems Portfolio  
+# Defense / Control Systems Portfolio  
 **Abel Palmer**
 
-This repository contains a collection of control systems, guidance, tracking, navigation and system identification projects focused on building robust and tenacious tracking drone simulations, and learning (mostly linear, or linearized) dynamical models from data and designing controllers for those models. I employ typical control engineering workflows, like identifying models from input–output data, validation through simulation and designing controllers using classical control with modern robustness additions.
+This repository contains projects in control systems, guidance, tracking, and system identification, with a focus on autonomous drone tracking and interception. The work emphasizes learning dynamical models from data, designing controllers for those models, and validating performance in closed-loop simulation.
+
+A central project is a **drone tracking and interception system** using a **gain-scheduled LQG controller augmented with derivative feedback (PD structure)**, implemented in both **Python and C++**, designed to track and neutralize a moving target under noise and model uncertainty.
 
 ---
 
 ## Topics Covered
 
-The projects in this repository involve techniques from system identification, classical control, and modern state-space control. Specific details can be found in the READMEs for each project.
-
 ### System Identification
 
-Methods for learning dynamical models from experimental data.
+Learning dynamical models from input–output data.
 
-- Subspace identification (CVA / N4SID style methods)
+- Subspace identification (CVA / N4SID)
 - Block Hankel matrix construction
-- Singular value analysis for model order selection
-- Identification of DT state-space models
-- Validation of learned models on unseen datasets
+- Singular value analysis for order selection
+- Discrete-time state-space model estimation
+- Validation on held-out datasets
 
-Workflow used (subh as in the quadcopter project):
+Typical workflow:
 
 1. Generate excitation signals (multisine / chirp)
-2. Collect IO data
+2. Collect input–output data
 3. Construct past–future Hankel matrices
-4. Compute SVD and examine singular values
-5. Estimate state-space models of different orders
-6. Validate models through simulation error
+4. Perform SVD and analyze singular values
+5. Estimate models across candidate orders
+6. Select order via validation error / information criteria
 
 ---
 
 ### Control Design
 
-Controllers are designed using both classical and modern techniques.
+Controllers are designed using state-space and frequency-domain methods.
 
 **State-space methods**
-
 - LQR
 - Kalman filtering
 - LQG control
-- State estimation for noisy systems
+- Gain scheduling across operating conditions
 
 **Classical control**
-
-- PID control
+- PID / PD augmentation
 - Loop shaping
 - Sensitivity and complementary sensitivity analysis
-- Nyquist stability analysis
-- Bode plots and frequency-domain robustness analysis
+- Nyquist and Bode methods
 
-These controllers are applied to models learned through system identification.
+---
+
+### Drone Tracking & Interception (Flagship Project)
+
+Design and implementation of a closed-loop system for tracking and intercepting a moving target.
+
+- Nonlinear quadrotor dynamics with linearization about operating points  
+- Subspace identification of local linear models from simulated data  
+- Gain-scheduled **LQG controller** for state estimation and control  
+- **Derivative (PD) augmentation** for improved transient response  
+- Tracking of a moving target with offset geometry (intercept behavior)  
+- Implementation in both **Python (prototyping)** and **C++ (real-time capable structure)**  
+
+Key features:
+
+- Scheduling over velocity / direction operating points  
+- Robustness to process and measurement noise  
+- Closed-loop validation via simulation  
+- Analysis of stability and bandwidth via frequency-domain tools  
 
 ---
 
 ### Robustness and Frequency-Domain Analysis
 
-I examine robustness properties of feedback systems (e.g. in the shock absorber project):
+Analysis of feedback robustness and performance tradeoffs.
 
-Topics include
-
-- sensitivity functions
-- disturbance rejection
-- bandwidth vs robustness tradeoffs
-- Nyquist stability margins
-- frequency-domain loop shaping
-- interpretation of Bode and Nyquist plots
+- Sensitivity and complementary sensitivity functions  
+- Disturbance rejection characteristics  
+- Bandwidth vs robustness tradeoffs  
+- Nyquist stability margins  
+- Loop shaping using Bode/Nyquist methods  
 
 ---
 
 ## Example Project Workflow
 
-A typical project in this repository follows a structure like:
+1. **Data generation**
 
-1. **Data generation or collection**
-
-   A nonlinear or physical system is excited with carefully designed inputs.
+   Excite a nonlinear or physical system with designed inputs.
 
 2. **System identification**
 
-   Subspace identification methods are used to estimate a linear state-space model.
+   Estimate linear state-space models from data.
 
 3. **Model validation**
 
-   The identified model is validated by comparing simulated outputs with observed data.
+   Compare predicted vs observed outputs.
 
 4. **Controller design**
 
-   Controllers such as LQR, PID, or loop-shaped controllers are designed.
+   Design LQR / LQG / PID / loop-shaped controllers.
 
 5. **Closed-loop simulation**
 
-   The controlled system is simulated to evaluate
-
-   - stability
-   - disturbance rejection
-   - transient response
-   - robustness
-
----
-
-## Repository Structure
-
-```
-projects/
-    system_identification/
-        subspace_id/
-        hankel_svd_analysis/
-
-    control_design/
-        lqg_control/
-        pid_control/
-        loop_shaping/
-
-    robust_analysis/
-        nyquist_analysis/
-        bode_analysis/
-
-matlab/
-    control_design.m
-    frequency_analysis.m
-
-python/
-    subspace_id.ipynb
-    simulation_tools.py
-
-figures/
-    bode_plots/
-    nyquist_plots/
-    singular_values/
-```
+   Evaluate:
+   - stability  
+   - tracking performance  
+   - disturbance rejection  
+   - robustness  
 
 ---
 
@@ -139,27 +115,28 @@ figures/
 - NumPy / SciPy
 - Matplotlib
 - Jupyter notebooks
+- C++ (Eigen, CMake)
 
-MATLAB is used primarily for control design and frequency-domain analysis, while Python is used for system identification, simulation, and data processing.
+MATLAB is used for control design and frequency-domain analysis.  
+Python is used for system identification, simulation, and data processing.  
+C++ is used for performance-oriented implementations of dynamics, estimation, and control.
 
 ---
 
 ## Motivation
 
-Real engineering systems are rarely known exactly. Instead, engineers often learn models from measured data and design controllers based on those models.
-
-This repository explores that workflow:
+Real systems are not known exactly; models must often be learned from data. This repository focuses on that workflow:
 
 - excite a system  
 - identify a model  
 - design a controller  
 - analyze robustness  
 
-The emphasis is on understanding how control techniques behave when models are learned from data rather than derived from first principles.
+The emphasis is on how control methods behave when applied to learned models, and how to maintain stability and performance under modeling error and noise.
 
 ---
 
 ## Author
 
 **Abel Palmer**  
-Applied mathematics and control systems
+Applied Mathematics – Control Systems
